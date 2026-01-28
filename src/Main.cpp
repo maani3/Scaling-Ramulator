@@ -45,7 +45,7 @@ void run_dramtrace(const Config& configs, Memory<T, Controller>& memory, const c
 
     /* run simulation */
     bool stall = false, end = false;
-    int reads = 0, writes = 0, clks = 0, gwrite = 0, gact0 = 0, gact1 = 0, gact2 = 0, gact3 = 0, comp = 0, readres = 0;
+    int reads = 0, writes = 0, clks = 0, gwrite = 0, gact0 = 0, gact1 = 0, gact2 = 0, gact3 = 0, gact4 = 0, gact5 = 0, gact6 = 0, gact7 = 0, comp = 0, readres = 0;
     long addr = 0;
     Request::Type type = Request::Type::READ;
     map<int, int> latencies;
@@ -71,6 +71,10 @@ void run_dramtrace(const Config& configs, Memory<T, Controller>& memory, const c
                 else if (type == Request::Type::G_ACT1) gact1++;
                 else if (type == Request::Type::G_ACT2) gact2++;
                 else if (type == Request::Type::G_ACT3) gact3++;
+                else if (type == Request::Type::G_ACT4) gact4++;
+                else if (type == Request::Type::G_ACT5) gact5++;
+                else if (type == Request::Type::G_ACT6) gact6++;
+                else if (type == Request::Type::G_ACT7) gact7++;
                 else if (type == Request::Type::COMP) comp++;
                 else if (type == Request::Type::READRES) readres++;
             }
@@ -113,7 +117,7 @@ void run_dramtrace(const Config& configs, Memory<T, Controller>& memory, const c
       "\n\nramulator_simulation_time = %u days, %u hrs, %u min, %u sec (%u sec)\n",
       (unsigned)d, (unsigned)h, (unsigned)m, (unsigned)s, (unsigned)difference);
     printf("ramulator_simulation_rate = %u (op/sec)\n",
-         (unsigned)((reads + writes + gwrite + gact0 + gact1 + gact2 + gact3 + comp *(16+16)*16 + readres) / difference));
+         (unsigned)((reads + writes + gwrite + gact0 + gact1 + gact2 + gact3 + gact4 + gact5 + gact6 + gact7 + comp *(16+16)*16 + readres) / difference));
 
     Stats::statlist.printall();
 

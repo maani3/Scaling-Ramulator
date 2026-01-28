@@ -200,7 +200,7 @@ void Controller<GDDR6>::tick() {
     if (cmd == GDDR6::Command::GWRITE)
         num_gwrite += 1;
     if (cmd == GDDR6::Command::G_ACT0 || cmd == GDDR6::Command::G_ACT1
-        || cmd == GDDR6::Command::G_ACT2 || cmd == GDDR6::Command::G_ACT3)
+        || cmd == GDDR6::Command::G_ACT2 || cmd == GDDR6::Command::G_ACT3 || cmd == GDDR6::Command::G_ACT4 || cmd == GDDR6::Command::G_ACT5 || cmd == GDDR6::Command::G_ACT6 || cmd == GDDR6::Command::G_ACT7 )
         num_gact += 1;
     if (cmd == GDDR6::Command::COMP)
         num_comp += 1;

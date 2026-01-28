@@ -37,7 +37,7 @@ public:
         ACT, PRE, PREA,
         RD,  WR,  RDA,  WRA,
         REF, PDE, PDX,  SRE, SRX,
-        GWRITE, G_ACT0, G_ACT1, G_ACT2, G_ACT3, COMP, READRES, // for Newton
+        GWRITE, G_ACT0, G_ACT1, G_ACT2, G_ACT3, G_ACT4, G_ACT5, G_ACT6, G_ACT7, COMP, READRES, // for Newton
         MAX
     };
 
@@ -45,14 +45,14 @@ public:
         "ACT", "PRE", "PREA",
         "RD",  "WR",  "RDA",  "WRA",
         "REF", "PDE", "PDX",  "SRE", "SRX",
-        "GWRITE", "G_ACT0", "G_ACT1", "G_ACT2", "G_ACT3", "COMP", "READRES" // for Newton
+        "GWRITE", "G_ACT0", "G_ACT1", "G_ACT2", "G_ACT3", "G_ACT4", "G_ACT5", "G_ACT6", "G_ACT7", "COMP", "READRES" // for Newton
     };
 
     Level scope[int(Command::MAX)] = {
         Level::Row,    Level::Bank,   Level::Rank,
         Level::Column, Level::Column, Level::Column, Level::Column,
         Level::Rank,   Level::Rank,   Level::Rank,   Level::Rank,   Level::Rank,
-        Level::Rank,   Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::Column, Level::Bank // for Newton
+        Level::Rank,   Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::BankGroup, Level::Column, Level::Bank // for Newton
     };
     bool is_BG(Level level)
     {
@@ -65,6 +65,10 @@ public:
             case int(Command::G_ACT1):
             case int(Command::G_ACT2):
             case int(Command::G_ACT3):
+            case int(Command::G_ACT4):
+            case int(Command::G_ACT5):
+            case int(Command::G_ACT6):
+            case int(Command::G_ACT7):
                 return true;
             default:
                 return false;
@@ -87,6 +91,10 @@ public:
             case int(Command::G_ACT1):
             case int(Command::G_ACT2):
             case int(Command::G_ACT3):
+            case int(Command::G_ACT4):
+            case int(Command::G_ACT5):
+            case int(Command::G_ACT6):
+            case int(Command::G_ACT7):
                 return true;
             default:
                 return false;
@@ -145,7 +153,7 @@ public:
     Command translate[int(Request::Type::MAX)] = {
         Command::RD,  Command::WR,
         Command::REF, Command::PDE, Command::SRE,
-        Command::GWRITE, Command::G_ACT0, Command::G_ACT1, Command::G_ACT2, Command::G_ACT3, Command::COMP, Command::READRES // for Newton
+        Command::GWRITE, Command::G_ACT0, Command::G_ACT1, Command::G_ACT2, Command::G_ACT3, Command::G_ACT4, Command::G_ACT5, Command::G_ACT6, Command::G_ACT7, Command::COMP, Command::READRES // for Newton
     };
 
     /* Prerequisite */
@@ -192,7 +200,7 @@ public:
         {1<<10, 16, {0, 1, 4, 4, 1<<12, 1<<(7+3)}}, {1<<10, 32, {0, 1, 4, 4, 1<<12, 1<<(6+3)}},
         {2<<10, 16, {0, 1, 4, 4, 1<<13, 1<<(7+3)}}, {2<<10, 32, {0, 1, 4, 4, 1<<13, 1<<(6+3)}},
         {4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}}, {2<<10, 32, {0, 1, 4, 4, 1<<14, 1<<(6+3)}},
-        {8<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(8+3)}}, {8<<10, 32, {0, 1, 4, 4, 1<<14, 1<<(7+3)}}
+        {8<<10, 16, {0, 1, 8, 4, 1<<14, 1<<(8+3)}}, {8<<10, 32, {0, 1, 4, 4, 1<<14, 1<<(7+3)}}
     }, org_entry;
 
     void set_channel_number(int channel);
@@ -231,7 +239,7 @@ public:
         11, 11, 9, 11, 7,
         25, 35, // nRC
         1, 2, 4, 8,
-        5, 17, 188,
+        5, 1, 188,
         0, 0,
         10, 10, 0,
         0, 0, 0},

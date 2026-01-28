@@ -484,6 +484,14 @@ bool Trace::get_dramtrace_request(long& req_addr, Request::Type& req_type)
         req_type = Request::Type::G_ACT2;
     else if (line.substr(pos) == "G_ACT3")
         req_type = Request::Type::G_ACT3;
+    else if (line.substr(pos) == "G_ACT4")
+        req_type = Request::Type::G_ACT4;
+    else if (line.substr(pos) == "G_ACT5")
+        req_type = Request::Type::G_ACT5;
+    else if (line.substr(pos) == "G_ACT6")
+        req_type = Request::Type::G_ACT6;
+    else if (line.substr(pos) == "G_ACT7")
+        req_type = Request::Type::G_ACT7;
     else if (line.substr(pos) == "COMP")
         req_type = Request::Type::COMP;
     else assert(false);

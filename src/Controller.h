@@ -377,6 +377,10 @@ public:
             case int(Request::Type::G_ACT1):
             case int(Request::Type::G_ACT2):
             case int(Request::Type::G_ACT3):
+            case int(Request::Type::G_ACT4):
+            case int(Request::Type::G_ACT5):
+            case int(Request::Type::G_ACT6):
+            case int(Request::Type::G_ACT7):
             case int(Request::Type::COMP):
             case int(Request::Type::READRES):
                 return pimq;
